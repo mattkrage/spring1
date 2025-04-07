@@ -11,9 +11,10 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Id;
+import lombok.extern.slf4j.Slf4j;
 
 
-
+@Slf4j
 @Data
 @Entity
 public class TacoOrder {
@@ -44,7 +45,9 @@ public class TacoOrder {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Taco> tacos = new ArrayList<>();
+
     public void addTaco(Taco taco) {
+        log.info("IN ADDDD");
         this.tacos.add(taco);
     }
 
