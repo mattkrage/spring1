@@ -21,6 +21,7 @@ import sia.taco_cloud.tacos.Ingredient.Type;
 import sia.taco_cloud.tacos.Taco;
 import sia.taco_cloud.tacos.TacoOrder;
 import sia.taco_cloud.tacos.data.IngredientRepository;
+import sia.taco_cloud.tacos.data.TacoRepository;
 
 @Slf4j
 @Controller
@@ -30,10 +31,14 @@ public class DesignTacoController {
 
     private final IngredientRepository ingredientRepo;
 
+    private final TacoRepository tacoRepo;
+
+
     @Autowired
     public DesignTacoController(
-            IngredientRepository ingredientRepo) {
+            IngredientRepository ingredientRepo, TacoRepository tacoRepo) {
         this.ingredientRepo = ingredientRepo;
+        this.tacoRepo = tacoRepo;
     }
 
     @ModelAttribute
@@ -84,6 +89,9 @@ public class DesignTacoController {
         }
 
         tacoOrder.addTaco(taco);
+
+        tacoRepo.save(taco);
+
         log.info("Processing taco: {}", taco);
         return "redirect:/orders/current";
     }
