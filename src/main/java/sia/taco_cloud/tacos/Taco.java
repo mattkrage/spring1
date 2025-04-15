@@ -1,5 +1,6 @@
 package sia.taco_cloud.tacos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 @Data
 @Entity
 @RestResource(rel="tacos", path="tacos")
-public class Taco {
+public class Taco implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

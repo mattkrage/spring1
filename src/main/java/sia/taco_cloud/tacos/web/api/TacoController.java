@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sia.taco_cloud.tacos.Taco;
 import sia.taco_cloud.tacos.data.TacoRepository;
+import sia.taco_cloud.tacos.messaging.TacoMessagingService;
 
 import java.util.Optional;
 
@@ -14,13 +15,15 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path="/api/tacos",
         produces="application/json")
-@CrossOrigin(origins="http://tacocloud:8080")
+@CrossOrigin(origins="*")
 public class TacoController {
 
     private TacoRepository tacoRepo;
+    private TacoMessagingService messageService;
 
-    public TacoController(TacoRepository tacoRepo) {
+    public TacoController(TacoRepository tacoRepo, TacoMessagingService messageService) {
         this.tacoRepo = tacoRepo;
+        this.messageService = messageService;
     }
 
     @GetMapping(params="recent")
@@ -44,6 +47,7 @@ public class TacoController {
     @PostMapping(consumes="application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public Taco postTaco(@RequestBody Taco taco) {
+        messageService.sendTaco(taco);
         return tacoRepo.save(taco);
     }
 

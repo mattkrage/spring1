@@ -5,9 +5,18 @@ spring:
   data:
     rest:
       base-path: /data-api
+  artemis:
+    host: localhost
+    port: 8161
+    user: matt
+    password: matt
+  jms:
+    template:
+      default-destination: tacocloud.order.queue
 
+password: l3tm31n
 logging:
   level:
     root: INFO
-    org.springframework: DEBUG
-    sia.taco_cloud: DEBUG
+    org.springframework: INFO
+    sia.taco_cloud: INFO
