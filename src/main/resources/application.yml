@@ -26,3 +26,19 @@ management:
     web:
       exposure:
         include: '*'
+    health:
+      show-details: always
+      show-components: always
+      diskspace:
+        enabled: true
+  metrics:
+    enable:
+      auto: true
+  info:
+    env:
+      enabled: true
+
+info:
+  contact:
+    email: mc@tacocloud.com
+    phone: 26100
