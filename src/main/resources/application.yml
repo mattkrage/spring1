@@ -13,8 +13,11 @@ spring:
   jms:
     template:
       default-destination: tacocloud.order.queue
-
-password: l3tm31n
+  boot:
+    admin:
+      client:
+        url: http://localhost:9090
+        password: l3tm31n
 logging:
   level:
     root: INFO

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>sia</groupId>
-	<artifactId>taco-cloud</artifactId>
+	<artifactId>tacocloud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>taco-cloud</name>
 	<description>taco</description>
@@ -88,6 +88,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>3.1.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -114,6 +119,9 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<image>
+						<name>tacocloud/${project.artifactId}:${project.version}</name>
+					</image>
 				</configuration>
 				<executions>
 					<execution>
